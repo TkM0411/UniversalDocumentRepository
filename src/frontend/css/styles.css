@@ -1,0 +1,258 @@
+/* ===================================================================
+   Cloud File Manager – Custom Styles
+   Layered on top of Bootstrap 5.3
+   =================================================================== */
+
+/* ---- Base ---- */
+:root {
+  --cfm-brand:       #5b6cfa;
+  --cfm-brand-dark:  #3d4fd6;
+  --cfm-surface:     #f8f9fc;
+  --cfm-border:      #e2e6ea;
+  --cfm-text-muted:  #6c757d;
+  --cfm-shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.07);
+  --cfm-shadow-md:   0 4px 16px rgba(0, 0, 0, 0.10);
+  --cfm-radius:      0.75rem;
+}
+
+body {
+  background-color: var(--cfm-surface);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: #212529;
+}
+
+/* ---- Navbar ---- */
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--cfm-brand) !important;
+  font-size: 1.25rem;
+}
+
+.navbar {
+  box-shadow: var(--cfm-shadow-sm);
+  background: #fff;
+}
+
+/* ---- Login page ---- */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-card {
+  background: #fff;
+  border-radius: var(--cfm-radius);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--cfm-shadow-md);
+  text-align: center;
+}
+
+.login-card .app-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.login-card h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.login-card p.subtitle {
+  color: var(--cfm-text-muted);
+  font-size: 0.93rem;
+  margin-bottom: 1.75rem;
+}
+
+.btn-brand {
+  background: var(--cfm-brand);
+  border-color: var(--cfm-brand);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-brand:hover {
+  background: var(--cfm-brand-dark);
+  border-color: var(--cfm-brand-dark);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ---- Upload zone ---- */
+.upload-zone {
+  border: 2px dashed var(--cfm-border);
+  border-radius: var(--cfm-radius);
+  padding: 2rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: #fff;
+}
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+  border-color: var(--cfm-brand);
+  background: #f0f2ff;
+}
+
+.upload-zone .upload-icon {
+  font-size: 2.5rem;
+  color: var(--cfm-brand);
+  margin-bottom: 0.5rem;
+}
+
+.upload-zone p {
+  margin: 0;
+  color: var(--cfm-text-muted);
+  font-size: 0.9rem;
+}
+
+.upload-zone p strong {
+  color: var(--cfm-brand);
+}
+
+/* ---- Card ---- */
+.cfm-card {
+  background: #fff;
+  border-radius: var(--cfm-radius);
+  box-shadow: var(--cfm-shadow-sm);
+  border: 1px solid var(--cfm-border);
+}
+
+/* ---- File table ---- */
+.file-table th {
+  background: var(--cfm-surface);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--cfm-text-muted);
+  border-bottom: 2px solid var(--cfm-border);
+  padding: 0.75rem 1rem;
+}
+
+.file-table td {
+  vertical-align: middle;
+  padding: 0.75rem 1rem;
+  font-size: 0.91rem;
+  border-bottom: 1px solid var(--cfm-border);
+}
+
+.file-table tr:last-child td {
+  border-bottom: none;
+}
+
+.file-name {
+  font-weight: 500;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.annotation-cell {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--cfm-text-muted);
+  font-size: 0.87rem;
+  font-style: italic;
+}
+
+.annotation-cell.empty {
+  color: #ced4da;
+}
+
+.badge-type {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2em 0.55em;
+  border-radius: 0.35rem;
+  background: #e9ecef;
+  color: #495057;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ---- Action buttons ---- */
+.action-btn {
+  border: none;
+  background: transparent;
+  color: var(--cfm-text-muted);
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.4rem;
+  transition: background 0.15s, color 0.15s;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.action-btn:hover {
+  background: var(--cfm-surface);
+  color: #212529;
+}
+
+.action-btn.download:hover { color: var(--cfm-brand); }
+.action-btn.edit:hover     { color: #fd7e14; }
+.action-btn.delete:hover   { color: #dc3545; }
+
+/* ---- Empty state ---- */
+.empty-state {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--cfm-text-muted);
+}
+
+.empty-state .empty-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.4;
+}
+
+/* ---- Progress bar for uploads ---- */
+#upload-progress-wrapper {
+  display: none;
+}
+
+/* ---- Toast ---- */
+.cfm-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  min-width: 260px;
+}
+
+/* ---- Modal ---- */
+.modal-content {
+  border-radius: var(--cfm-radius);
+  border: none;
+  box-shadow: var(--cfm-shadow-md);
+}
+
+/* ---- Spinner overlay ---- */
+#page-spinner {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+}
+
+/* ---- Responsive tweaks ---- */
+@media (max-width: 576px) {
+  .file-name   { max-width: 140px; }
+  .annotation-cell { display: none; }
+  .badge-type  { display: none; }
+}
