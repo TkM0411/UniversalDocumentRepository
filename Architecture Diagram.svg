@@ -1,0 +1,152 @@
+<svg viewBox="0 0 900 580" xmlns="http://www.w3.org/2000/svg" role="img" font-family="Inter, system-ui, sans-serif">
+  <title>Cloud File Manager – AWS Architecture Diagram</title>
+  <desc>Shows how the browser authenticates via Cognito, loads the frontend from CloudFront/S3, and calls the Python backend container which writes to DynamoDB and S3.</desc>
+
+  <!-- Background -->
+  <rect width="900" height="580" fill="#f8f9fc"/>
+
+  <!-- AWS Cloud boundary -->
+  <rect x="160" y="30" width="710" height="530" rx="12" fill="none" stroke="#c7d2fe" stroke-width="2" stroke-dasharray="8 4"/>
+  <text x="175" y="55" font-size="11" fill="#6366f1" font-weight="600" letter-spacing="0.5">AWS Cloud</text>
+
+  <!-- Browser -->
+  <g transform="translate(30,230)">
+    <rect width="100" height="64" rx="8" fill="#fff" stroke="#d1d5db" stroke-width="1.5"/>
+    <rect x="20" y="8" width="60" height="38" rx="3" fill="none" stroke="#6366f1" stroke-width="2"/>
+    <rect x="40" y="46" width="20" height="5" rx="2" fill="#6366f1"/>
+    <rect x="30" y="51" width="40" height="3" rx="1.5" fill="#d1d5db"/>
+    <text x="50" y="72" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">Browser</text>
+    <text x="50" y="83" text-anchor="middle" font-size="9" fill="#9ca3af">End User</text>
+  </g>
+
+  <!-- Cognito -->
+  <g transform="translate(185,60)">
+    <rect width="130" height="70" rx="8" fill="#faf5ff" stroke="#a78bfa" stroke-width="1.5"/>
+    <path d="M65 12 L80 18 L80 30 Q80 42 65 48 Q50 42 50 30 L50 18 Z" fill="none" stroke="#7c3aed" stroke-width="2"/>
+    <text x="65" y="62" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">Cognito</text>
+    <text x="65" y="73" text-anchor="middle" font-size="9" fill="#9ca3af">OAuth2 / User Pool</text>
+  </g>
+
+  <!-- CloudFront -->
+  <g transform="translate(360,60)">
+    <rect width="110" height="70" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.5"/>
+    <circle cx="55" cy="28" r="16" fill="none" stroke="#ea580c" stroke-width="2"/>
+    <ellipse cx="55" cy="28" rx="8" ry="16" fill="none" stroke="#ea580c" stroke-width="1.5"/>
+    <line x1="39" y1="28" x2="71" y2="28" stroke="#ea580c" stroke-width="1.5"/>
+    <text x="55" y="58" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">CloudFront</text>
+    <text x="55" y="69" text-anchor="middle" font-size="9" fill="#9ca3af">CDN</text>
+  </g>
+
+  <!-- S3 Static Hosting -->
+  <g transform="translate(510,60)">
+    <rect width="120" height="70" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.5"/>
+    <ellipse cx="60" cy="22" rx="22" ry="8" fill="none" stroke="#ea580c" stroke-width="2"/>
+    <line x1="38" y1="22" x2="38" y2="42" stroke="#ea580c" stroke-width="2"/>
+    <line x1="82" y1="22" x2="82" y2="42" stroke="#ea580c" stroke-width="2"/>
+    <ellipse cx="60" cy="42" rx="22" ry="8" fill="none" stroke="#ea580c" stroke-width="2"/>
+    <text x="60" y="60" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">S3 Bucket</text>
+    <text x="60" y="71" text-anchor="middle" font-size="9" fill="#9ca3af">Static Hosting</text>
+  </g>
+
+  <!-- ALB -->
+  <g transform="translate(345,230)">
+    <rect width="110" height="70" rx="8" fill="#f0fdf4" stroke="#4ade80" stroke-width="1.5"/>
+    <line x1="55" y1="14" x2="55" y2="28" stroke="#16a34a" stroke-width="2"/>
+    <line x1="55" y1="28" x2="30" y2="44" stroke="#16a34a" stroke-width="2"/>
+    <line x1="55" y1="28" x2="55" y2="44" stroke="#16a34a" stroke-width="2"/>
+    <line x1="55" y1="28" x2="80" y2="44" stroke="#16a34a" stroke-width="2"/>
+    <circle cx="55" cy="14" r="4" fill="#16a34a"/>
+    <circle cx="30" cy="44" r="4" fill="#16a34a"/>
+    <circle cx="55" cy="44" r="4" fill="#16a34a"/>
+    <circle cx="80" cy="44" r="4" fill="#16a34a"/>
+    <text x="55" y="62" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">ALB</text>
+    <text x="55" y="73" text-anchor="middle" font-size="9" fill="#9ca3af">Load Balancer</text>
+  </g>
+
+  <!-- ECS Container -->
+  <g transform="translate(490,210)">
+    <rect width="150" height="110" rx="8" fill="#eff6ff" stroke="#60a5fa" stroke-width="1.5"/>
+    <rect x="35" y="12" width="80" height="50" rx="4" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <line x1="55" y1="12" x2="55" y2="62" stroke="#2563eb" stroke-width="1.5"/>
+    <line x1="75" y1="12" x2="75" y2="62" stroke="#2563eb" stroke-width="1.5"/>
+    <line x1="95" y1="12" x2="95" y2="62" stroke="#2563eb" stroke-width="1.5"/>
+    <line x1="35" y1="32" x2="115" y2="32" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="75" y="83" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">Python Container</text>
+    <text x="75" y="95" text-anchor="middle" font-size="9" fill="#9ca3af">Flask · Gunicorn</text>
+    <text x="75" y="107" text-anchor="middle" font-size="9" fill="#9ca3af">ECS Fargate</text>
+  </g>
+
+  <!-- DynamoDB -->
+  <g transform="translate(345,430)">
+    <rect width="130" height="80" rx="8" fill="#fff1f2" stroke="#f87171" stroke-width="1.5"/>
+    <ellipse cx="65" cy="22" rx="24" ry="8" fill="none" stroke="#dc2626" stroke-width="2"/>
+    <line x1="41" y1="22" x2="41" y2="46" stroke="#dc2626" stroke-width="2"/>
+    <line x1="89" y1="22" x2="89" y2="46" stroke="#dc2626" stroke-width="2"/>
+    <ellipse cx="65" cy="46" rx="24" ry="8" fill="none" stroke="#dc2626" stroke-width="2"/>
+    <ellipse cx="65" cy="32" rx="24" ry="8" fill="none" stroke="#dc2626" stroke-width="1" stroke-dasharray="4 2"/>
+    <text x="65" y="65" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">DynamoDB</text>
+    <text x="65" y="76" text-anchor="middle" font-size="9" fill="#9ca3af">FileMetadata table</text>
+  </g>
+
+  <!-- S3 Files -->
+  <g transform="translate(530,430)">
+    <rect width="150" height="80" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.5"/>
+    <ellipse cx="75" cy="22" rx="28" ry="9" fill="none" stroke="#ea580c" stroke-width="2"/>
+    <line x1="47" y1="22" x2="47" y2="46" stroke="#ea580c" stroke-width="2"/>
+    <line x1="103" y1="22" x2="103" y2="46" stroke="#ea580c" stroke-width="2"/>
+    <ellipse cx="75" cy="46" rx="28" ry="9" fill="none" stroke="#ea580c" stroke-width="2"/>
+    <text x="75" y="64" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">S3 Bucket</text>
+    <text x="75" y="75" text-anchor="middle" font-size="9" fill="#9ca3af">UniversalDocumentRepository</text>
+  </g>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#6366f1"/></marker>
+    <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#ea580c"/></marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#16a34a"/></marker>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#2563eb"/></marker>
+    <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#dc2626"/></marker>
+  </defs>
+
+  <!-- Browser → Cognito -->
+  <path d="M130,248 Q157,248 157,95 L185,95" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+  <text x="162" y="168" font-size="9" fill="#7c3aed" transform="rotate(-90,162,168)">1 Login / Sign-up</text>
+
+  <!-- Browser → CloudFront -->
+  <path d="M130,258 L360,95" fill="none" stroke="#ea580c" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="222" y="168" font-size="9" fill="#ea580c">2 Load App</text>
+
+  <!-- CloudFront → S3 Static -->
+  <path d="M470,95 L510,95" fill="none" stroke="#ea580c" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+
+  <!-- Browser → ALB -->
+  <path d="M130,268 L345,268" fill="none" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="200" y="282" font-size="9" fill="#16a34a">3 API Calls (Bearer token)</text>
+
+  <!-- ALB → Container -->
+  <path d="M455,265 L490,265" fill="none" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+  <!-- Container → DynamoDB -->
+  <path d="M565,320 L565,380 Q565,430 475,462" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr-red)"/>
+  <text x="478" y="395" font-size="9" fill="#dc2626">4 Write metadata</text>
+
+  <!-- Container → S3 Files -->
+  <path d="M600,320 L600,430" fill="none" stroke="#ea580c" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <text x="607" y="385" font-size="9" fill="#ea580c">5 Upload / Download</text>
+
+  <!-- Cognito → Container JWKS -->
+  <path d="M315,95 Q330,95 330,155 L565,155 L565,210" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+  <text x="430" y="148" font-size="9" fill="#7c3aed">JWKS public keys</text>
+
+  <!-- Legend -->
+  <g transform="translate(185,520)">
+    <line x1="0" y1="8" x2="28" y2="8" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr-green)"/>
+    <text x="33" y="12" font-size="9" fill="#6b7280">API request</text>
+    <line x1="100" y1="8" x2="128" y2="8" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+    <text x="133" y="12" font-size="9" fill="#6b7280">Auth / JWKS</text>
+    <line x1="220" y1="8" x2="248" y2="8" stroke="#ea580c" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+    <text x="253" y="12" font-size="9" fill="#6b7280">S3 / CloudFront</text>
+    <line x1="360" y1="8" x2="388" y2="8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr-red)"/>
+    <text x="393" y="12" font-size="9" fill="#6b7280">DynamoDB</text>
+  </g>
+</svg>
