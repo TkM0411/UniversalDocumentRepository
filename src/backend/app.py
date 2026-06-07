@@ -11,11 +11,12 @@ Environment variables required at runtime:
   ALLOWED_ORIGINS         – Comma-separated CORS origins, e.g. https://d123.cloudfront.net
 """
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify  # jsonify retained for error handlers below
 from flask_cors import CORS
 
 from config import Config
 from routes.files import files_bp
+from routes.health import health_bp
 from routes.users import users_bp
 
 
@@ -38,13 +39,7 @@ def create_app() -> Flask:
     # ------------------------------------------------------------------
     app.register_blueprint(files_bp, url_prefix="/api/files")
     app.register_blueprint(users_bp, url_prefix="/api/users")
-
-    # ------------------------------------------------------------------
-    # Health-check (used by ALB / container orchestrator)
-    # ------------------------------------------------------------------
-    @app.route("/health")
-    def health():
-        return jsonify({"status": "healthy"})
+    app.register_blueprint(health_bp)   # mounts at /health (no prefix)
 
     # ------------------------------------------------------------------
     # Global error handlers

@@ -10,6 +10,15 @@ RUN pip install --no-cache-dir --upgrade pip \
 # ---- runtime stage ----
 FROM python:3.11-slim
 
+ARG VERSION="1.0.0"
+ARG BUILD_DATE
+
+LABEL Product="UniversalDocumentRepositoryAPI"
+LABEL Version=${VERSION}
+LABEL BuildDate=${BUILD_DATE}
+LABEL Maintainer="TkM"
+LABEL Description="Universal Document Repository API"
+
 WORKDIR /app
 
 # Copy installed packages from builder
