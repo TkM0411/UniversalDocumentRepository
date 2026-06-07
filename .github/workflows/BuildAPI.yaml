@@ -34,7 +34,7 @@ jobs:
           context: ./src/backend
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/universaldocumentrepository:${{ inputs.version }}
-          buildArgs: |
+          build-args: |
             VERSION=${{ inputs.version }}
             BUILD_DATE=${{ env.BUILD_DATE }}
           file: ./src/backend/Dockerfile
